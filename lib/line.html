@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<script src="./echarts.min.js"></script>
+
+<body>
+  <div style="width: 500px; height: 400px;"></div>
+</body>
+<script>
+  var mCharts = echarts.init(document.querySelector("div"))
+  var month = ['1月', '2月', '3月', '4月', '5月', '6月', '7月', '8月', '9月', '10月', '11月', '12月']
+  var num = [3000, 2000, 2900, 800, 1600, 3200, 4800, 2500, 1200, 5400, 3600, 4800]
+  var option = {
+    xAxis: {
+      type: 'category',
+      data: month
+    },
+    yAxis: {
+      type: 'value'
+    },
+    series: [
+      {
+        name: '康师傅',
+        data: num,
+        type: 'line',
+        markPoint: {
+          data: [
+            { type: "max" },
+            { type: "min" }
+          ]
+        },
+        markLine: {
+          data: [
+            { type: 'average' }
+          ]
+        },
+        smooth:true,
+        areaStyle:{
+          color:'pink'
+        }
+      }
+    ]
+  }
+  mCharts.setOption(option)
+</script>
+
+</html>

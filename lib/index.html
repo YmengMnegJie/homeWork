@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<!-- 1 引入echart.js文件 -->
+<script src="../lib/echarts.min.js"></script>
+
+<body>
+  <!-- 2 准备一个呈现图表的盒子 -->
+  <div style="width: 500px; height: 400px;"></div>
+
+
+  <script>
+    // 3 初始化echart实例对象
+    var mCharts = echarts.init(document.querySelector("div"))
+    var name1 = ['懒羊羊', '美羊羊', '沸羊羊', '暖羊羊', '喜羊羊', '慢羊羊']
+    var num = [70, 92, 88, 100, 60, 30]
+    var num1 = [88, 32, 18, 90, 80, 100]
+    // 4 准备配置项
+    var option = {
+
+      // 标题
+      title: {
+        text: '青青草原成绩表',
+        textStyle: {
+          color: 'green'
+        }
+      },
+
+
+      //弹窗
+      tooltip: {
+        trigger: 'item'
+      },
+
+
+      //工具栏
+      toolbox: {
+        feature: {
+          saveAsImage: {},  //导出图片
+          dataView: {},  //数据视图
+          restore: {},  //还原重置
+          dataZoom: {},  //区域缩放
+          magicType: {
+            type: ['bar', 'line']
+          }
+        }
+      },
+
+      //图例、系列
+      legend:{
+        data:['语文','数学']
+      },
+
+
+      xAxis: {
+        type: "category",
+        data: name1
+      },
+      yAxis: {
+        type: 'value'
+
+      },
+      series: [
+        {
+          name: '语文',
+          type: 'bar',
+          data: num,
+          markPoint: {
+            data: [
+              { type: "max", name: '最大值' },
+              { type: "min", name: '最小值' }
+            ]
+          },
+          markLine: {
+            data: [
+              { type: 'average', name: '最小值' }
+            ]
+          },
+          label: {
+            show: true
+          },
+        },
+        {
+          name: '数学',
+          type: 'bar',
+          data: num1,
+          markPoint: {
+            data: [
+              { type: "max", name: '最大值' },
+              { type: "min", name: '最小值' }
+            ]
+          },
+          markLine: {
+            data: [
+              { type: 'average', name: '最小值' }
+            ]
+          },
+          label: {
+            show: true
+          },
+        }
+      ]
+    }
+    // 5 将配置项设置给echart实例对象
+    mCharts.setOption(option)
+  </script>
+</body>
+
+</html>
